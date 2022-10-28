@@ -24,7 +24,7 @@ def attack(target,logfilename,start,digit,addname = False,ename = None):
     dt2 = dt1.astimezone(timezone(timedelta(hours=8))) # 轉換時區 -> 東八區
     twt=dt2.strftime("%Y-%m-%d %H:%M:%S")
     file = open(logfilename,'w')
-    file.write('[attack'+target+'start at '+twt+'] \n')
+    file.write('[attack '+target+' start at '+twt+'] \n')
     file.close()
     #logger end
     #define passwd start
@@ -79,7 +79,7 @@ def attack(target,logfilename,start,digit,addname = False,ename = None):
             twt=dt2.strftime("%Y-%m-%d %H:%M:%S")
             #not yet
             file = open(logfilename,'a')
-            file.write('failed'+str(spasswd)+'at'+twt+'\n')
+            file.write('failed '+str(spasswd)+' at '+twt+'\n')
             file.close()
             if start == True:
                 passwd +=1
