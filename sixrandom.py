@@ -37,6 +37,9 @@ def attack(target,logfilename,start,digit,addname = False,ename = None):
                 passwd = int(str(passwd) + '9')
     #define passwd end
     while True:
+        #check if passwd > digit
+        if len(str(passwd)) > digit:
+            break
         #define spasswd
         if addname == True:
             spasswd = ename + str(passwd)
