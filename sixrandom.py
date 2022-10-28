@@ -19,14 +19,6 @@ def attack(target,logfilename,start,digit,addname = False,ename = None):
         raise ValueError('Digit Must Be an interger')
     if digit <= 0:
         raise ValueError('Digit Must Bigger Than One')
-    #logger start
-    dt1 = datetime.utcnow().replace(tzinfo=timezone.utc)
-    dt2 = dt1.astimezone(timezone(timedelta(hours=8))) # 轉換時區 -> 東八區
-    twt=dt2.strftime("%Y-%m-%d %H:%M:%S")
-    file = open(logfilename,'w')
-    file.write('[attack '+target+' start at '+twt+'] \n')
-    file.close()
-    #logger end
     #define passwd start
     if start == True:
         passwd = 0
@@ -38,7 +30,7 @@ def attack(target,logfilename,start,digit,addname = False,ename = None):
     #define passwd end
     while True:
         #check if passwd > digit
-        if len(str(passwd)) > digit:
+        if len(str(passwd)) > digit or passwd < 0:
             break
         #define spasswd
         if addname == True:
@@ -78,8 +70,8 @@ def attack(target,logfilename,start,digit,addname = False,ename = None):
             dt2 = dt1.astimezone(timezone(timedelta(hours=8))) # 轉換時區 -> 東八區
             twt=dt2.strftime("%Y-%m-%d %H:%M:%S")
             #not yet
-            file = open(logfilename,'a')
-            file.write('failed '+str(spasswd)+' at '+twt+'\n')
+            file = open(logfilename,'w')
+            file.write(str(spasswd))
             file.close()
             if start == True:
                 passwd +=1
